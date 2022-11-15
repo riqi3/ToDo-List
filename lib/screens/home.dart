@@ -26,7 +26,7 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bg,
+      backgroundColor: black1,
       appBar: _buildAppBar(),
       body: Stack(
         children: [
@@ -43,7 +43,9 @@ class HomeScreenState extends State<HomeScreen> {
                         child: Text(
                           'All todos',
                           style: TextStyle(
+                            color: bg,
                               fontSize: 30, fontWeight: FontWeight.w500),
+                              
                         ),
                       ),
                       for (ToDo todoo in _foundToDo)
@@ -70,7 +72,7 @@ class HomeScreenState extends State<HomeScreen> {
                       color: Colors.white,
                       boxShadow: const [
                         BoxShadow(
-                          color: Colors.grey,
+                          color: grey1,
                           offset: Offset(0.0, 0.0),
                           blurRadius: 10.0,
                           spreadRadius: 0.0,
@@ -130,6 +132,9 @@ class HomeScreenState extends State<HomeScreen> {
   }
 
   void _addToDoItem(String todo) {
+    if (todo.isEmpty){
+      return;
+    }
     setState(() {
       todosList.add(ToDo(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
@@ -173,7 +178,7 @@ class HomeScreenState extends State<HomeScreen> {
           prefixIconConstraints: BoxConstraints(maxHeight: 20, minWidth: 25),
           border: InputBorder.none,
           hintText: 'Search',
-          hintStyle: TextStyle(color: grey),
+          hintStyle: TextStyle(color: bg),
         ),
       ),
     );
